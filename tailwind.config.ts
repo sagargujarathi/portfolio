@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,10 +9,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: {
+          main: "#FFFFFF",
+          dark: "#FFFFFFE5",
+          light: "#FFFFFF80",
+        },
+        background: {
+          dark: "#0E0C0C",
+        },
       },
+      fontFamily: { exo2: ["var(--exo2)"] },
     },
   },
-  plugins: [],
-} satisfies Config;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  plugins: [require("@tailwindcss/typography")],
+};
+
+export default config;
