@@ -1,0 +1,32 @@
+{
+  "username": "sagargujarathi",
+
+  "basicDetails": {
+    "firstName": "Sagar",
+    "lastName": "Gujarathi",
+    "image": "some.com"
+  },
+
+  "aboutMe": {
+    "title": "Software Developer and Tech Enthusiast",
+    "description": "I am passionate about technology, coding, and building innovative projects. I love exploring new tech stacks and sharing knowledge with the community.",
+    "profession": ["Software Engineer"],
+    "fields": [
+      "Frontend Development",
+      "Backend Development",
+      "FullStack Development"
+    ],
+    "technologies": ["React.js", "Next.js", "Node.js", "GoLang"]
+  },
+
+  "contact": [
+    {
+      "value": "LINKEDIN",
+      "link": "https://www.linkedin.com/in/gujarathisagar/"
+    },
+    {
+      "value": "GITHUB",
+      "link": "https://github.com/sagargujarathi"
+    }
+  ]
+}

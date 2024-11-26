@@ -1,8 +1,5 @@
+const HomePage = () => {
+  return <body>This will be login page</body>;
+};
 
-const Bat = () => {
-  return (
-    <div>This page belongs to a bat</div>
-  )
-}
-
-export default Bat
+export default HomePage;
