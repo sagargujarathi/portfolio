@@ -1,8 +1,10 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
-import Header from "./sections/header-section";
+import Header from "../sections/header-section";
 import { Inter } from "next/font/google";
-import Footer from "./sections/footer-section";
+import Footer from "../sections/footer-section";
+import { IParamsType } from "@/modules/types";
+import userSchema from "@/modules/utils/models/user-modal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,16 +16,21 @@ export const metadata: Metadata = {
 
 interface ILayoutType {
   children: ReactNode;
+  params: Promise<IParamsType>;
 }
 
-const Layout = ({ children }: ILayoutType) => {
+const Layout = async ({ children, params }: ILayoutType) => {
+  const user = (await params).user;
+
+  const data = await userSchema.findOne({ username: user });
+
   return (
     <body
       className={`${inter.className} antialiased bg-design2-background-main`}
     >
-      <Header />
+      <Header user={user} />
       <main>{children}</main>
-      <Footer />
+      <Footer data={data} />
     </body>
   );
 };

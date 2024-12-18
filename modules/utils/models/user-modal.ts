@@ -1,8 +1,22 @@
-import { randomUUID } from "crypto";
 import mongoose from "mongoose";
 
-const model = new mongoose.Schema({
-  id: { type: String, required: true, default: randomUUID() }, // UUIDs are strings
+const projectSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: { type: String, required: true },
+  image: { type: String, required: true },
+  links: [
+    {
+      value: { type: String, required: true },
+      link: { type: String, required: true },
+    },
+  ],
+  technologies: {
+    type: [String],
+    required: true,
+  },
+});
+
+const schema = new mongoose.Schema({
   username: { type: String, required: true },
 
   basicDetails: {
@@ -28,26 +42,9 @@ const model = new mongoose.Schema({
     },
   ],
 
-  projects: [
-    {
-      id: { type: String, required: true, default: randomUUID },
-      name: { type: String, required: true },
-      description: { type: String, required: true },
-      image: { type: String, required: true },
-      links: [
-        {
-          value: { type: String, required: true },
-          link: { type: String, required: true },
-        },
-      ],
-      technologies: {
-        type: [String],
-        required: true,
-      },
-    },
-  ],
+  projects: [projectSchema],
 });
 
-const userModel = mongoose.models.user || mongoose.model("user", model);
+const userSchema = mongoose.models.user || mongoose.model("user", schema);
 
-export default userModel;
+export default userSchema;

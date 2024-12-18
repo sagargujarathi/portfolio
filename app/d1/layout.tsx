@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import localFont from "next/font/local";
 import Header from "./sections/header-section";
 import Footer from "./sections/footer-section";
+import { IParamsType } from "@/modules/types";
 const exo2 = localFont({
   src: [
     {
@@ -38,14 +39,17 @@ export const metadata: Metadata = {
 
 interface ILayoutType {
   children: ReactNode;
+  params: Promise<IParamsType>;
 }
 
-const Layout = ({ children }: ILayoutType) => {
+const Layout = async ({ children, params }: ILayoutType) => {
+  const user = (await params).user;
+
   return (
     <body
       className={`${exo2.className} antialiased bg-background-dark lg:w-[1150px] mx-auto`}
     >
-      <Header />
+      <Header user={user} />
       <main>{children}</main>
       <Footer />
     </body>

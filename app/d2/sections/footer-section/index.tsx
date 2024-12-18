@@ -1,46 +1,35 @@
-import LinkedinIcon from "../../../../../modules/icons/linkedin-icon";
-import DiscordIcon from "../../../../../modules/icons/discord-icon";
-import XIcon from "../../../../../modules/icons/x-icon";
-import GithubIcon from "../../../../../modules/icons/github-icon";
 import Link from "next/link";
 import { ROUTER_LINKS } from "../../route-paths";
+import { IUserType } from "@/modules/types";
+import { LINK_OPTIONS } from "@/modules/constants";
 
-const Footer = () => {
+interface IFooterType {
+  data: IUserType;
+}
+const Footer = ({ data }: IFooterType) => {
+  const contact = data.contact.map((item) => ({
+    ...item,
+    ...LINK_OPTIONS.find((x) => x.value === item.value),
+  }));
+
+  console.log("meow: ", contact);
   return (
     <footer className="flex justify-between flex-wrap items-center lg:mx-[264px] py-[29px] mt-[60px]">
       <p className="text-[20px] font-semibold text-design2-text-primary-dark">
-        Sampath ©️ 2024
+        {data.basicDetails.firstName} ©️ 2024
       </p>
 
       <div className="flex gap-3 items-center">
-        <a
-          href="https://www.linkedin.com/in/gujarathisagar/"
-          target="_blank"
-          className="hover:opacity-80 transition-all duration-150"
-        >
-          <LinkedinIcon height={29} width={29} />
-        </a>
-        <a
-          href="#"
-          target="_blank"
-          className="hover:opacity-80 transition-all duration-150"
-        >
-          <DiscordIcon height={29} width={29} />
-        </a>
-        <a
-          href="#"
-          target="_blank"
-          className="hover:opacity-80 transition-all duration-150"
-        >
-          <XIcon height={29} width={29} />
-        </a>
-        <a
-          href="#"
-          target="_blank"
-          className="hover:opacity-80 transition-all duration-150"
-        >
-          <GithubIcon height={29} width={29} />
-        </a>
+        {contact.map(({ iconLink: Icon, ...item }) => (
+          <a
+            key={item.label}
+            href={item.link}
+            target="_blank"
+            className="hover:opacity-80 transition-all duration-150"
+          >
+            {Icon ? <Icon height={29} width={29} /> : null}
+          </a>
+        ))}
       </div>
 
       <div className="flex gap-[15px] items-center">

@@ -5,7 +5,7 @@ import localFont from "next/font/local";
 export const paytone = localFont({
   src: [
     {
-      path: "../../../../../public/fonts/paytone-one/regular.ttf",
+      path: "../../../../public/fonts/paytone-one/regular.ttf",
       weight: "900",
       style: "normal",
     },

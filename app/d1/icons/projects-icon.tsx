@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ROUTER_LINKS } from "../route-paths";
+import { IParamsType } from "@/modules/types";
 
-const ProjectsIcon = () => {
-  const ROUTE = ROUTER_LINKS.PROJECTS;
+const ProjectsIcon = ({ user }: IParamsType) => {
+  const ROUTE = ROUTER_LINKS.PROJECTS.replace("{user}", user);
   const isActive = usePathname() === ROUTE;
 
   return (

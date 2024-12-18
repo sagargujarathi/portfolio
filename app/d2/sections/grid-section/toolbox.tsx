@@ -1,4 +1,4 @@
-import LinkedinIcon from "../../../../../modules/icons/linkedin-icon";
+import LinkedinIcon from "../../../../modules/icons/linkedin-icon";
 
 const ToolBox = () => {
   return (
